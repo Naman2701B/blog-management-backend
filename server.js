@@ -13,11 +13,16 @@ const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 
+const corsOpts = {
+    origin: "http://localhost:3000",
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+};
 const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOpts));
 
 app.get("/", (req, res) => {
     res.send("Server is running...");
